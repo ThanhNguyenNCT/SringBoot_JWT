@@ -1,7 +1,7 @@
 package Cybersoft.ExJPA_Security.controller;
 
 import Cybersoft.ExJPA_Security.entity.Product;
-import Cybersoft.ExJPA_Security.payload.respone.BaseRespone;
+import Cybersoft.ExJPA_Security.payload.respone.BaseResponse;
 import Cybersoft.ExJPA_Security.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,33 +19,33 @@ public class ProductController {
     public ResponseEntity<?> insertProduct(@RequestParam String name,
                                            @RequestParam double price) {
         Product product = productService.insertProduct(name, price);
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(200);
-        baseRespone.setMessage("Insert product successfully");
-        baseRespone.setData(product);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(200);
+        baseResponse.setMessage("Insert product successfully");
+        baseResponse.setData(product);
+        return ResponseEntity.ok(baseResponse);
     }
 
     @GetMapping("")
     public ResponseEntity<?> getAllProduct() {
         List<Product> listProduct = productService.getAllProduct();
 
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(200);
-        baseRespone.setMessage("All products");
-        baseRespone.setData(listProduct);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(200);
+        baseResponse.setMessage("All products");
+        baseResponse.setData(listProduct);
+        return ResponseEntity.ok(baseResponse);
     }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> getProductById(@PathVariable int id) {
         Product product = productService.getById(id);
 
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(200);
-        baseRespone.setMessage("");
-        baseRespone.setData(product);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(200);
+        baseResponse.setMessage("");
+        baseResponse.setData(product);
+        return ResponseEntity.ok(baseResponse);
     }
 
     @PutMapping("/update/{id}")
@@ -57,21 +57,21 @@ public class ProductController {
         product.setPrice(price);
         Product updatedProduct = productService.editProduct(id, product);
 
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(200);
-        baseRespone.setMessage("Update product successfully");
-        baseRespone.setData(updatedProduct);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(200);
+        baseResponse.setMessage("Update product successfully");
+        baseResponse.setData(updatedProduct);
+        return ResponseEntity.ok(baseResponse);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable int id) {
         productService.deleteProduct(id);
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(200);
-        baseRespone.setMessage("Delete product successfully");
-        baseRespone.setData(null);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(200);
+        baseResponse.setMessage("Delete product successfully");
+        baseResponse.setData(null);
+        return ResponseEntity.ok(baseResponse);
     }
 
 

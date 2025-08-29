@@ -15,19 +15,19 @@ public class Post {
 
     private String title;
     private String content;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "id_author")
+    @JoinColumn(name = "author_id")
     private User author;
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
     @PrePersist
     public void prePersist(){
-        if(createDate == null){
-            createDate = LocalDateTime.now();
+        if(createdAt == null){
+            createdAt= LocalDateTime.now();
         }
     }
 }

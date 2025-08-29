@@ -30,6 +30,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/products/**").permitAll();
                     auth.requestMatchers("/products/**").hasRole("ADMIN"); // khớp mọi method còn lại
+                    auth.requestMatchers(HttpMethod.GET, "/post/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)

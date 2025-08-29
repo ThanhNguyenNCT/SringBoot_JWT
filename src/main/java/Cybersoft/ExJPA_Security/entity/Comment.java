@@ -14,8 +14,8 @@ public class Comment {
     private int id;
 
     private String content;
-    private LocalDateTime createDta;
-    private LocalDateTime updateDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
@@ -24,4 +24,11 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
+
+    @PrePersist
+    public void prePersist(){
+        if(createdAt == null){
+            createdAt= LocalDateTime.now();
+        }
+    }
 }

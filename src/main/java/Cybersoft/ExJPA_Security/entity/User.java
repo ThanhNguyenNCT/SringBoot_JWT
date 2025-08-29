@@ -21,6 +21,9 @@ public class User {
     @OneToMany(mappedBy = "author")
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "author")
+    private List<Post> posts;
+
     @PrePersist
     public void prePersist() {
         if (this.id == null) {

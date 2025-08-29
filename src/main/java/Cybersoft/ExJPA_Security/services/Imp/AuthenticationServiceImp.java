@@ -38,6 +38,8 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
     @Override
     public void register(String username, String password) {
+        System.out.println("Registering user: " + username);
+        System.out.println("Password: " + password);
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));

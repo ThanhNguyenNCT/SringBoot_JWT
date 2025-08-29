@@ -1,7 +1,7 @@
 package Cybersoft.ExJPA_Security.controller;
 
 import Cybersoft.ExJPA_Security.payload.request.RegisterRequest;
-import Cybersoft.ExJPA_Security.payload.respone.BaseRespone;
+import Cybersoft.ExJPA_Security.payload.respone.BaseResponse;
 import Cybersoft.ExJPA_Security.services.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +23,20 @@ public class AuthenticationController {
 //        System.out.println("Secret Key: " + secretKey);
         String token = authenticationService.checkLogin(username, password);
         boolean issuccess = token != null && !token.isEmpty();
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(issuccess ? 200 : 500);
-        baseRespone.setMessage(issuccess ? "Login success" : "Login failed");
-        baseRespone.setData(issuccess ? token:null);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(issuccess ? 200 : 500);
+        baseResponse.setMessage(issuccess ? "Login success" : "Login failed");
+        baseResponse.setData(issuccess ? token:null);
+        return ResponseEntity.ok(baseResponse);
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest){
         authenticationService.register(registerRequest.getUsername(), registerRequest.getPassword());
-        BaseRespone baseRespone = new BaseRespone();
-        baseRespone.setCode(200);
-        baseRespone.setMessage("Register successful");
-        baseRespone.setData(null);
-        return ResponseEntity.ok(baseRespone);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(200);
+        baseResponse.setMessage("Register successful");
+        baseResponse.setData(null);
+        return ResponseEntity.ok(baseResponse);
     }
 }
